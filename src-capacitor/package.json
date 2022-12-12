@@ -1,0 +1,12 @@
+{
+  "name": "WillFid",
+  "version": "1.0",
+  "description": "WillFid Shop",
+  "author": "Pixel1917 <sank195951@gmail.com>",
+  "private": true,
+  "dependencies": {
+    "@capacitor/android": "2.5.0",
+    "@capacitor/cli": "^2.0.0",
+    "@capacitor/core": "^2.0.0"
+  }
+}
