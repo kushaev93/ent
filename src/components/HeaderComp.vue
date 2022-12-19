@@ -16,22 +16,22 @@ router.beforeEach(() => {
   mobile.value = false
 })
 
-function submit() {
-  if (search.value.length) {
-    router.push(
-      `/search?search=${search.value.replace(
-        /[`~!@#$%^&()|+\=?;'",.<>\{\}\[\]\\\/]/gi,
-        ''
-      )}`
-    )
-    show.value = false
-  }
-}
+// function submit() {
+//   if (search.value.length) {
+//     router.push(
+//       `/search?search=${search.value.replace(
+//         /[`~!@#$%^&()|+\=?;'",.<>\{\}\[\]\\\/]/gi,
+//         ''
+//       )}`
+//     )
+//     show.value = false
+//   }
+// }
 </script>
 
 <template>
   <div class="main-menu" v-bind:class="{ active: mobile }">
-    <div class="container flex-row align-center">
+    <div class="container flex-row align-center j-around">
       <q-btn
         class="show-menu"
         dense
@@ -43,7 +43,7 @@ function submit() {
       <router-link to="/" class="logo-text">
         <img :src="nav.settings?.logo.url" alt="Логотип" />
       </router-link>
-      <div class="search">
+      <!-- <div class="search">
         <form class="search-form" @submit.prevent="submit">
           <input type="text" v-model.trim="search" placeholder="Поиск" />
           <button type="submit">
@@ -55,7 +55,7 @@ function submit() {
             />
           </button>
         </form>
-      </div>
+      </div> -->
       <nav>
         <ul>
           <li v-for="el of menu" :key="el.id" class="hide-hd">
@@ -104,7 +104,7 @@ function submit() {
     transition-hide="slide-down"
   >
     <div class="content-modal">
-      <form class="search-form" @submit.prevent="submit">
+      <!-- <form class="search-form" @submit.prevent="submit">
         <input type="text" v-model.trim="search" placeholder="Поиск" />
         <button type="submit" class="buttons white">
           <img
@@ -114,7 +114,7 @@ function submit() {
             alt="Поиск"
           />
         </button>
-      </form>
+      </form> -->
     </div>
   </q-dialog>
 </template>
@@ -134,6 +134,10 @@ export default {
   }
 }
 .header {
+  .j-around {
+    justify-content: space-between; ////
+  }
+
   ul {
     list-style: none;
     padding: 0;
@@ -162,23 +166,23 @@ export default {
     .logo-text img {
       height: 45px;
     }
-    .search {
-      flex: 1;
-      .search-form {
-        position: relative;
-        display: none;
-        align-items: center;
-        input {
-          border: 1px solid $main;
-        }
-        button[type='submit'] {
-          position: absolute;
-          right: 16px;
-          border: none;
-          background: none;
-        }
-      }
-    }
+    // .search {
+    //   flex: 1;
+    //   .search-form {
+    //     position: relative;
+    //     display: flex; //
+    //     align-items: center;
+    //     input {
+    //       border: 1px solid $main;
+    //     }
+    //     button[type='submit'] {
+    //       position: absolute;
+    //       right: 16px;
+    //       border: none;
+    //       background: none;
+    //     }
+    //   }
+    // }
     nav {
       ul {
         gap: 20px;

@@ -2,7 +2,6 @@
 import { usePage } from 'stores/page'
 import { useMeta } from 'quasar'
 import { useRoute } from 'vue-router'
-import Sidebar from 'components/Sidebar.vue'
 import ItemBlock from 'components/ItemBlock.vue'
 
 const route = useRoute()
@@ -44,12 +43,10 @@ useMeta(metaData)
     <section class="page">
       <div class="container">
         <div class="page-grid section-pd">
-          <div class="sidebar">
-            <Sidebar />
-          </div>
           <div class="page-content">
             <h1 class="mobile">{{ page.name }}</h1>
             <ItemBlock :item="itemInfo" />
+
             <component
               v-for="component in page.blocks"
               :key="component.id"

@@ -4,7 +4,6 @@ import { useRoute } from 'vue-router'
 import { api } from 'boot/axios'
 import { useMeta } from 'quasar'
 import { ICartItem } from 'src/stores/models'
-import Sidebar from 'components/Sidebar.vue'
 import Pagination from 'components/widgets/Pagination.vue'
 
 const route = useRoute()
@@ -43,19 +42,17 @@ useMeta(metaData)
     <section class="page">
       <div class="container">
         <div class="page-grid section-pd">
-          <div class="sidebar">
-            <Sidebar />
-          </div>
           <div class="page-content">
-            <h1 class="mobile">
-              Результаты поиска по запросу {{ route.query.search }}
+            <h1 class="mobile text-header">
+              Результаты поиска по запросу - "{{ route.query.search }}"
             </h1>
             <p
               v-if="(!(search.data.items as Array<ICartItem>)?.length && !(search.data.categories)?.length)"
             >
-              По вашему запросу ничего не найдено..
+              Ничего не найдено..
             </p>
             <div class="search-categories">
+              <h3 class="text-header">Бренды</h3>
               <router-link
                 class="children-list"
                 v-for="category of search.data.categories"
@@ -64,35 +61,65 @@ useMeta(metaData)
               >
                 {{ category.name }}
               </router-link>
-            </div>
-            <div class="products" style="position: relative; min-height: 30vh">
-              <router-link
-                class="product"
-                v-for="(product, index) of (search.data.items as Array<ICartItem>)"
-                :to="`/catalog/${
-                  product.category_url ? product.category_url : 'static'
-                }/${product.url}`"
-                :key="index"
+
+              <h3
+                style="
+                  color: #a5a5a5;
+                  line-height: 40px;
+                  text-align: center;
+                  margin: 2rem;
+                "
               >
-                <ImageComp
-                  class="image"
-                  :image="product.imageFile"
-                  :alt="product.name"
-                  :thumb="true"
-                />
-                <div class="content">
-                  <div class="name">{{ product.name }}</div>
-                  <div class="desc" v-html="product.vendor_code"></div>
-                  <div class="price">
-                    <PriceComp
-                      :price="product.price"
-                      :optPrice="product?.opt_price"
-                      :valute="product.valute"
-                    />
-                  </div>
+                Товары
+              </h3>
+              <div
+                class="products"
+                style="position: relative; min-height: 30vh"
+              >
+                <div
+                  class="product"
+                  v-for="(product, index) of (search.data.items as Array<ICartItem>)"
+                  :to="`/catalog/${
+                    product.category_url ? product.category_url : 'static'
+                  }/${product.url}`"
+                  :key="index"
+                >
+                  <q-card class="my-card" flat bordered>
+                    <q-card-section horizontal>
+                      <q-card-section class="q-pt-xs">
+                        <div class="text-overline">
+                          {{ product.category_name }}
+                        </div>
+                        <div class="text-subtitle2 q-mt-sm q-mb-xs">
+                          {{ product.name }}
+                        </div>
+
+                        <div class="price-item">
+                          <PriceComp
+                            :price="product.price"
+                            :optPrice="product?.opt_price"
+                            :valute="product.valute"
+                          />
+                        </div>
+                        <div class="text-caption text-grey">
+                          Минимальный заказ: 1 Коробка
+                        </div>
+                      </q-card-section>
+
+                      <q-card-section class="col-5 flex flex-center">
+                        <ImageComp
+                          class="image"
+                          :image="product.imageFile"
+                          :alt="product.name"
+                          :thumb="true"
+                        />
+                      </q-card-section>
+                    </q-card-section>
+                  </q-card>
                 </div>
-              </router-link>
+              </div>
             </div>
+
             <Pagination :pages="pages" :route="route" search />
           </div>
         </div>
@@ -108,15 +135,30 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.text-header {
+  color: $grey;
+  line-height: 40px;
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 36px;
+  }
+}
 .search-categories {
-  display: flex;
-  flex-wrap: wrap;
+  display: contents;
   gap: 15px;
   margin-bottom: 30px;
+  border: 2px solid $grey;
+  border-radius: 10px;
+  padding: 2rem;
+
   .children-list {
+    display: block;
+    text-align: center;
     border: 1px solid $light_grey;
-    padding: 15px 10px;
-    display: flex;
+    border-radius: 4px;
+    padding: 15px 35px;
     cursor: pointer;
     align-items: center;
     transition: 0.5s;

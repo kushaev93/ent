@@ -48,9 +48,6 @@ const props = defineProps({
         />
       </div>
       <div class="desc">
-        <div class="articul">
-          Артикул: <strong>{{ item.vendor_code }}</strong>
-        </div>
         <div class="info-item">
           Категория: <strong>{{ item.category_name }}</strong>
         </div>

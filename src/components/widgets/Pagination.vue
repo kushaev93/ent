@@ -90,28 +90,31 @@ export default {
 
 <style lang="scss" scoped>
 ul.pagination {
+  justify-content: center;
+  margin: 3rem 0 0;
   display: flex;
   flex-direction: row;
   list-style: none;
   gap: 20px;
   flex-wrap: wrap;
   a {
+    background: #1174cb;
+    border: 1px;
+    border-radius: 20px;
+    height: 35px;
     transition: 0.3s;
     cursor: pointer;
     background: $white;
-    border: 1px solid $light_grey;
-    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     min-width: 36px;
-    height: 48px;
     text-decoration: none;
     font-size: 18px;
     color: $black;
     &.active {
-      background: $main;
-      color: $white;
+      // background: $main;
+      color: $main;
     }
     &:hover {
       background: $main;

@@ -14,6 +14,17 @@ defineProps({
     </h4>
     <div class="simple-text" v-html="componentData.settings.text"></div>
   </section>
+  <!--
+  <q-card dark bordered class="bg-grey-9 my-card">
+    <q-card-section>
+      <div class="text-h6">{{ componentData.settings.title }}</div>
+      <div class="simple-text" v-html="componentData.settings.text"></div>
+    </q-card-section>
+
+    <q-separator dark inset />
+
+    <q-card-section> asd </q-card-section>
+  </q-card> -->
 </template>
 
 <script lang="ts">
@@ -25,9 +36,17 @@ export default {
 <style lang="scss" scoped>
 .simple-text-section {
   margin-bottom: 30px;
+  h5 {
+    font-weight: 500 !important;
+    line-height: 2rem;
+    letter-spacing: 0.16667em;
+  }
   h4.heading {
     margin-bottom: 20px;
     position: relative;
+    font-weight: 500;
+    line-height: 2rem;
+    letter-spacing: 0.16667em;
     &::after {
       width: 80px;
       margin-top: 7px;

@@ -11,6 +11,8 @@ const props = defineProps({
   },
 })
 
+console.log(props)
+
 const isLogged = ref(cookies.has('isLogged') ? true : false)
 const form = useForm()
 const show = ref(false)
@@ -51,9 +53,11 @@ async function submit() {
 const download = (url: string) => {
   if (isLogged.value) {
     window.location.href = url
+    console.log(url)
   } else {
     show.value = true
     rememberedUrl.value = url
+    console.log(url)
   }
 }
 
@@ -67,54 +71,54 @@ const columns = [
     field: 'brand',
     sortable: true,
   },
-  {
-    name: 'moa',
-    align: 'left' as align,
-    label: 'pgpgpg',
-    field: 'moa',
-    sortable: true,
-  },
-  {
-    name: 'percent_300',
-    label: '$300+',
-    field: 'percent_300',
-    sortable: true,
-    align: 'center' as align,
-  },
-  {
-    name: 'percent_500',
-    label: '$500+',
-    field: 'percent_500',
-    sortable: true,
-    align: 'center' as align,
-  },
-  {
-    name: 'percent_1000',
-    label: '$1000+',
-    field: 'percent_1000',
-    sortable: true,
-    align: 'center' as align,
-  },
-  {
-    name: 'percent_2000',
-    label: '$2000+',
-    field: 'percent_2000',
-    sortable: true,
-    align: 'center' as align,
-  },
-  {
-    name: 'percent_5000',
-    label: '$5000+',
-    field: 'percent_5000',
-    sortable: true,
-    align: 'center' as align,
-  },
+  // {
+  //   name: 'moa',
+  //   align: 'left' as align,
+  //   label: 'pgpgpg',
+  //   field: 'moa',
+  //   sortable: true,
+  // },
+  // {
+  //   name: 'percent_300',
+  //   label: '$300+',
+  //   field: 'percent_300',
+  //   sortable: true,
+  //   align: 'center' as align,
+  // },
+  // {
+  //   name: 'percent_500',
+  //   label: '$500+',
+  //   field: 'percent_500',
+  //   sortable: true,
+  //   align: 'center' as align,
+  // },
+  // {
+  //   name: 'percent_1000',
+  //   label: '$1000+',
+  //   field: 'percent_1000',
+  //   sortable: true,
+  //   align: 'center' as align,
+  // },
+  // {
+  //   name: 'percent_2000',
+  //   label: '$2000+',
+  //   field: 'percent_2000',
+  //   sortable: true,
+  //   align: 'center' as align,
+  // },
+  // {
+  //   name: 'percent_5000',
+  //   label: '$5000+',
+  //   field: 'percent_5000',
+  //   sortable: true,
+  //   align: 'center' as align,
+  // },
   {
     name: 'category',
     label: 'Категория',
     field: 'category',
     sortable: true,
-    align: 'left' as align,
+    align: 'right' as align,
     format: (val: { name: unknown }) => val.name,
   },
 ]
@@ -302,6 +306,14 @@ i:hover {
 
   .q-table__container .q-table__top {
     padding: 12px 4px;
+  }
+  .text-caption {
+    font-size: 1.1rem;
+    color: grey;
+  }
+  .q-icon {
+    color: green;
+    font-size: 1.1rem;
   }
 }
 </style>

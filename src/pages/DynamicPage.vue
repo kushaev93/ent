@@ -30,9 +30,6 @@ useMeta(metaData)
     <section class="page">
       <div class="container">
         <div class="page-grid section-pd">
-          <div class="sidebar">
-            <Sidebar />
-          </div>
           <div class="page-content">
             <h1 class="mobile">{{ page.name }}</h1>
             <component
