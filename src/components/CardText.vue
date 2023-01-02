@@ -8,12 +8,14 @@ defineProps({
 </script>
 
 <template>
-  <q-card bordered class="card-text">
-    <div class="text-h6" v-if="componentData.settings.title.length">
-      {{ componentData.settings.title }}
-    </div>
-    {{ componentData.settings.text }}
-  </q-card>
+  <div class="1">
+    <q-card bordered class="card-text">
+      <div class="text-h6" v-if="componentData.settings.title.length">
+        {{ componentData.settings.title }}
+      </div>
+      {{ componentData.settings.text }}
+    </q-card>
+  </div>
 </template>
 
 <script lang="ts">

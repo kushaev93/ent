@@ -94,14 +94,16 @@ export default {
       .images {
         width: 100%;
         height: 100%;
+        background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
         .full-img {
           height: 100%;
           width: 100%;
-          object-fit: cover;
+          object-fit: contain;
         }
       }
       .content {
-        position: absolute;
+        display: none;
+        // position: absolute;
         left: 0px;
         bottom: 0px;
         width: 100%;

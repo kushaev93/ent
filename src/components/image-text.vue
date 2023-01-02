@@ -10,12 +10,6 @@ defineProps({
 <template>
   <section class="image-text-section">
     <div class="row gap-50">
-      <div class="image-text-img">
-        <ImageComp
-          :image="componentData.settings.imageFile"
-          :alt="componentData.settings.name"
-        />
-      </div>
       <div class="image-text-content">
         <h3>{{ componentData.settings.name }}</h3>
         <p class="p-18" v-html="componentData.settings.text"></p>
@@ -38,27 +32,18 @@ export default {
   }
 }
 
-.image-text-img {
-  width: 40%;
-}
-
-.image-text-img img {
-  height: 350px;
-  width: 100%;
-  object-fit: cover;
-}
-
-.video-text-img iframe {
-  height: 350px;
-  width: 640px;
-}
-
 .image-text-content {
+  text-align: center;
+  padding: 2rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-align: justify;
+  h3 {
+    font-size: 36px;
+    line-height: 40px;
+    color: #a5a5a5 !important;
+  }
 }
 
 @media screen and (max-width: 1366px) {

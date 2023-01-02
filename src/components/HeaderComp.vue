@@ -16,6 +16,8 @@ router.beforeEach(() => {
   mobile.value = false
 })
 
+//Search function
+
 // function submit() {
 //   if (search.value.length) {
 //     router.push(
@@ -43,6 +45,8 @@ router.beforeEach(() => {
       <router-link to="/" class="logo-text">
         <img :src="nav.settings?.logo.url" alt="Логотип" />
       </router-link>
+
+      <!-- Search Start -->
       <!-- <div class="search">
         <form class="search-form" @submit.prevent="submit">
           <input type="text" v-model.trim="search" placeholder="Поиск" />
@@ -56,6 +60,8 @@ router.beforeEach(() => {
           </button>
         </form>
       </div> -->
+
+      <!-- Search End -->
       <nav>
         <ul>
           <li v-for="el of menu" :key="el.id" class="hide-hd">
@@ -70,6 +76,8 @@ router.beforeEach(() => {
                 alt="Поиск"
             /></a>
           </li>
+
+          <!-- Cart Start-->
           <!-- <li>
             <router-link id="shop-cart" to="/cart" class="btn-icons">
               <img
@@ -81,6 +89,7 @@ router.beforeEach(() => {
               <div class="cart-count">{{ cart.cart.length }}</div>
             </router-link>
           </li> -->
+          <!-- Cart End-->
         </ul>
       </nav>
     </div>

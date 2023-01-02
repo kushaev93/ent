@@ -83,7 +83,7 @@ export default {
 <style lang="scss" scoped>
 .categories-main {
   margin-bottom: 30px;
-  border: 3px solid #848484;
+  box-shadow: 1px 1px 10px 5px rgb(0 0 0 / 30%);
   border-radius: 20px;
   padding: 6%;
 

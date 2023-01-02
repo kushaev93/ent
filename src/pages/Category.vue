@@ -106,6 +106,7 @@ const download = (url: string) => {
 }
 
 useMeta(metaData)
+console.log(items.data.items)
 </script>
 
 <template>
@@ -127,7 +128,7 @@ useMeta(metaData)
                   @click="download(props)"
                   class="btn"
                   :ripple="{ center: true }"
-                  label="Скачать Прайс-лист"
+                  label="Скачать полный Прайс-лист"
                   no-caps
                 />
               </q-card-actions>
@@ -178,7 +179,66 @@ useMeta(metaData)
                 </form>
               </div>
             </q-dialog>
-            <div class="products">
+
+            <!-- Test Start -->
+            <div>
+              <a href="https://wa.me/+821080991299">
+                <q-btn
+                  class="btn-order"
+                  :ripple="{ center: true }"
+                  label="Оформить заказ"
+                  no-caps
+                />
+              </a>
+            </div>
+            <table class="people">
+              <thead>
+                <tr class="type-tr">
+                  <th>Фото</th>
+                  <th>Название</th>
+                  <th class="xs-d-none">Минимальный заказ:</th>
+                  <th>Цена</th>
+                  <th class="xs-d-none">Бренд</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  v-for="product in items.data.items"
+                  :to="`/catalog/${
+                    product.category_url ? product.category_url : 'static'
+                  }/${product.url}`"
+                  :key="product.id"
+                >
+                  <td>
+                    <ImageComp
+                      class="image"
+                      :image="product.imageFile"
+                      :alt="product.name"
+                      :thumb="true"
+                    />
+                  </td>
+                  <td>{{ product.name }}</td>
+                  <td class="xs-d-none">
+                    <div class="text-caption text-grey">
+                      Минимальный заказ: 1 Коробка
+                    </div>
+                  </td>
+                  <td>
+                    <PriceComp
+                      :price="product.price"
+                      :optPrice="product?.opt_price"
+                      :valute="product.valute"
+                    />
+                  </td>
+                  <td class="xs-d-none">
+                    <p class="education">{{ product.category_name }}</p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- Test End -->
+
+            <!-- <div class="products">
               <div
                 class="product"
                 v-for="product in items.data.items"
@@ -207,20 +267,6 @@ useMeta(metaData)
                       <div class="text-caption text-grey">
                         Минимальный заказ: 1 Коробка
                       </div>
-                      <!--
-                      <div class="text-caption text-grey">
-                        Для заказа обращайтесь
-                        <div>
-                          <q-btn
-                            style="transform: rotate(30deg); margin: 5px"
-                            round
-                            color="primary"
-                            glossy
-                            icon="navigation"
-                          />
-                          <q-btn round color="green" icon="phone" />
-                        </div>
-                      </div> -->
                     </q-card-section>
 
                     <q-card-section class="col-5 flex flex-center">
@@ -234,7 +280,8 @@ useMeta(metaData)
                   </q-card-section>
                 </q-card>
               </div>
-            </div>
+            </div> -->
+
             <Pagination :pages="pages" :route="route" />
           </div>
         </div>
@@ -244,6 +291,32 @@ useMeta(metaData)
 </template>
 
 <style>
+.q-pa-md {
+  width: 100%;
+  padding: 10px 0px;
+  margin: 20px 0px;
+}
+
+.my-sticky-column-table {
+}
+
+/* specifying max-width so the example can
+    highlight the sticky column on any browser window */
+
+thead tr:first-child th:first-child {
+  background-color: #fff;
+}
+/* bg color is important for th; just specify one */
+
+td:first-child {
+  background-color: #f5f5dc;
+}
+
+tr:first-child th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
 .content-modal {
   background: white;
   padding: 15px;
@@ -284,6 +357,77 @@ form {
   padding: 13px;
   font-weight: 700;
   font-size: 1rem;
+}
+
+.btn-order {
+  background: #5a71d4;
+  width: 100%;
+  margin: 20px 0px;
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Test Start */
+
+* {
+  box-sizing: border-box;
+}
+table {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-family: 'Poppins', sans-serif;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-collapse: collapse;
+}
+tr {
+  font-size: 14px;
+  border: 1px solid #ddd;
+}
+tr:hover {
+  background-color: #f3f3f3;
+}
+th {
+  background-color: #f3f3f3;
+  color: #a0a0a0;
+  font-size: 15px;
+  padding: 10px;
+  text-align: left;
+}
+td {
+  padding: 0 10px;
+}
+td img {
+  border-radius: 50%;
+  width: 100px;
+  padding: 10px;
+}
+.education,
+.beauty,
+.food,
+.tech {
+  display: inline;
+  color: #373737;
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+.education {
+  background-color: #93dbde;
+}
+.tech {
+  background-color: #f49553;
+}
+.beauty {
+  background-color: #c395f1;
+}
+.food {
+  background-color: #95f1a3;
+}
+
+@media (max-width: 600px) {
+  .xs-d-none {
+    display: none;
+  }
 }
 </style>
 
